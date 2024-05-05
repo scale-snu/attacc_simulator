@@ -1,0 +1,16 @@
+diff --git a/src/memory_system/impl/generic_DRAM_system.cpp b/src/memory_system/impl/generic_DRAM_system.cpp
+index a7cce15..343adcb 100644
+--- a/src/memory_system/impl/generic_DRAM_system.cpp
++++ b/src/memory_system/impl/generic_DRAM_system.cpp
+@@ -85 +85 @@ class GenericDRAMSystem final : public IMemorySystem, public Implementation {
+-    }
++    };
+@@ -89,0 +90,8 @@ class GenericDRAMSystem final : public IMemorySystem, public Implementation {
++
++    bool is_pending() override {
++      bool is_pending = false;
++      for (auto controller : m_controllers) {
++        is_pending |= controller->is_pending();
++      }
++      return is_pending;
++    };

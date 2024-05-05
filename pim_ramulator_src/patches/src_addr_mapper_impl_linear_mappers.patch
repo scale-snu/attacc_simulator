@@ -1,0 +1,6 @@
+diff --git a/src/addr_mapper/impl/linear_mappers.cpp b/src/addr_mapper/impl/linear_mappers.cpp
+index 3792f08..fa050fe 100644
+--- a/src/addr_mapper/impl/linear_mappers.cpp
++++ b/src/addr_mapper/impl/linear_mappers.cpp
+@@ -125,0 +126 @@ class MOP4CLXOR final : public LinearMapperBase, public Implementation {
++

@@ -1,0 +1,10 @@
+diff --git a/src/dram_controller/impl/generic_dram_controller.cpp b/src/dram_controller/impl/generic_dram_controller.cpp
+index 8cd8293..1266ff2 100644
+--- a/src/dram_controller/impl/generic_dram_controller.cpp
++++ b/src/dram_controller/impl/generic_dram_controller.cpp
+@@ -137,0 +138,5 @@ class GenericDRAMController final : public IDRAMController, public Implementatio
++    bool is_pending() override {
++      bool is_pending = m_active_buffer.size() ||  m_priority_buffer.size() || m_read_buffer.size() || m_write_buffer.size() || pending.size();
++      return is_pending;
++    };
++

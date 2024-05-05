@@ -1,0 +1,14 @@
+diff --git a/src/dram/CMakeLists.txt b/src/dram/CMakeLists.txt
+index 3b781b6..742c64f 100644
+--- a/src/dram/CMakeLists.txt
++++ b/src/dram/CMakeLists.txt
+@@ -9,7 +8,0 @@ target_sources(
+-  impl/DDR3.cpp
+-  impl/DDR4.cpp
+-  impl/DDR4-VRR.cpp
+-  impl/DDR5.cpp
+-  impl/LPDDR5.cpp
+-  impl/HBM.cpp
+-  impl/HBM2.cpp
+@@ -16,0 +10 @@ target_sources(
++  impl/HBM3-PIM.cpp

@@ -1,0 +1,22 @@
+diff --git a/src/dram_controller/CMakeLists.txt b/src/dram_controller/CMakeLists.txt
+index 25ac82e..ae2df9f 100644
+--- a/src/dram_controller/CMakeLists.txt
++++ b/src/dram_controller/CMakeLists.txt
+@@ -11,0 +12,2 @@ target_sources(
++  impl/hbm3_controller.cpp
++  impl/hbm3_pim_controller.cpp
+@@ -13,0 +16 @@ target_sources(
++  impl/scheduler/pim_scheduler.cpp
+@@ -15,0 +19,2 @@ target_sources(
++  impl/refresh/all_bank_refresh_hbm3.cpp
++  impl/refresh/no_refresh.cpp
+@@ -17 +22 @@ target_sources(
+-  # impl/plugin/trr.cpp
++  impl/plugin/hbm3_trace_recorder.cpp
+@@ -20,6 +24,0 @@ target_sources(
+-  impl/plugin/para.cpp
+-  impl/plugin/graphene.cpp
+-  impl/plugin/oracle_rh.cpp
+-  impl/plugin/twice.cpp
+-  impl/plugin/hydra.cpp
+-  impl/plugin/rrs.cpp

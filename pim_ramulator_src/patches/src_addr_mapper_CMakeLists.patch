@@ -1,0 +1,7 @@
+diff --git a/src/addr_mapper/CMakeLists.txt b/src/addr_mapper/CMakeLists.txt
+index 3eee428..cc46e66 100644
+--- a/src/addr_mapper/CMakeLists.txt
++++ b/src/addr_mapper/CMakeLists.txt
+@@ -7,0 +8,2 @@ target_sources(
++  impl/hbm3_linear_mappers.cpp
++  impl/hbm3_pim_linear_mappers.cpp

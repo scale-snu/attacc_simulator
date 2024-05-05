@@ -1,0 +1,15 @@
+diff --git a/src/frontend/impl/memory_trace/loadstore_trace.cpp b/src/frontend/impl/memory_trace/loadstore_trace.cpp
+index c786e9f..a8c8925 100644
+--- a/src/frontend/impl/memory_trace/loadstore_trace.cpp
++++ b/src/frontend/impl/memory_trace/loadstore_trace.cpp
+@@ -41,0 +42,5 @@ class LoadStoreTrace : public IFrontEnd, public Implementation {
++      if (is_finished()) {
++        return;
++      }
++      bool req_full = false;
++      while(!req_full && !is_finished()) {
+@@ -47,0 +53,4 @@ class LoadStoreTrace : public IFrontEnd, public Implementation {
++        else {
++          req_full = true;
++        }
++      }

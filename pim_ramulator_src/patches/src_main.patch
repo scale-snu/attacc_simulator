@@ -1,0 +1,17 @@
+diff --git a/src/main.cpp b/src/main.cpp
+index f5412be..7775f29 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -11 +10,0 @@
+-#include "example/example_ifce.h"
+@@ -105,4 +103,0 @@ int main(int argc, char* argv[]) {
+-    if (frontend->is_finished()) {
+-      break;
+-    }
+-
+@@ -111,0 +107,5 @@ int main(int argc, char* argv[]) {
++
++    if (frontend->is_finished() & !memory_system->is_pending()) {
++      break;
++    }
++

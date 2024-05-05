@@ -1,0 +1,21 @@
+diff --git a/src/base/base.h b/src/base/base.h
+index b6cd44b..fafb4cc 100644
+--- a/src/base/base.h
++++ b/src/base/base.h
+@@ -178,8 +178,8 @@ class Implementation {
+-        for (auto child_impl : m_children) {
+-          if (child_impl->has_stats()) {
+-            // TODO: Is this a bug in yaml-cpp that I have to emit NewLine twice?
+-            emitter << YAML::Newline;
+-            emitter << YAML::Newline;
+-          }
+-          child_impl->print_stats(emitter);
+-        }
++//        for (auto child_impl : m_children) {
++//          if (child_impl->has_stats()) {
++//            // TODO: Is this a bug in yaml-cpp that I have to emit NewLine twice?
++//            emitter << YAML::Newline;
++//            emitter << YAML::Newline;
++//          }
++//          child_impl->print_stats(emitter);
++//        }

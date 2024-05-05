@@ -1,0 +1,9 @@
+diff --git a/src/dram_controller/impl/dummy_controller.cpp b/src/dram_controller/impl/dummy_controller.cpp
+index d610f29..665be2b 100644
+--- a/src/dram_controller/impl/dummy_controller.cpp
++++ b/src/dram_controller/impl/dummy_controller.cpp
+@@ -30,0 +31,4 @@ class DummyController final : public IDRAMController, public Implementation {
++    bool is_pending() override {
++      return true;
++    }
++

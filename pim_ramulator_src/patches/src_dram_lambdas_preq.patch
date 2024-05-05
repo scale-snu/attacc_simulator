@@ -1,0 +1,130 @@
+diff --git a/src/dram/lambdas/preq.h b/src/dram/lambdas/preq.h
+index 843f966..6f3c0e2 100644
+--- a/src/dram/lambdas/preq.h
++++ b/src/dram/lambdas/preq.h
+@@ -38,0 +39,106 @@ int RequireBankClosed(typename T::Node* node, int cmd, int target_id, Clk_t clk)
++
++template <class T>
++int RequireAllBanksRowOpen(typename T::Node* node, int cmd, int target_id, Clk_t clk) {
++  // For HBM3
++  if constexpr (T::m_levels["bank"] - T::m_levels["channel"] == 4) {
++    typename T::Node* channel = node->m_parent_node->m_parent_node->m_parent_node->m_parent_node;
++    for (auto pc : channel->m_child_nodes) {
++      for (auto rank : pc->m_child_nodes) {
++        for (auto bg : rank->m_child_nodes) {
++          for (auto bank: bg->m_child_nodes) {
++            switch (bank->m_state) {
++              case T::m_states["Closed"]: return T::m_commands["ACTAB"];
++              case T::m_states["Opened"]: {
++                if (bank->m_row_state.find(target_id) != bank->m_row_state.end()) {
++                  continue;
++                } else {
++                  return T::m_commands["PREA"];
++                }
++                return cmd;
++              }
++              default: {
++                spdlog::error("[Preq::Bank] Invalid bank state for an RD/WR command!");
++                std::exit(-1);
++              }
++            }
++          }
++        }
++      }
++    }
++  }
++  return cmd;
++};
++
++template <class T>
++int RequirePIMSameBanksRowOpen(typename T::Node* node, int cmd, int target_id, Clk_t clk) {
++  // For HBM3
++  if constexpr (T::m_levels["bank"] - T::m_levels["channel"] == 4) {
++    typename T::Node* ch = node->m_parent_node->m_parent_node->m_parent_node->m_parent_node;
++    for (auto pch : ch->m_child_nodes) {
++      for (auto rank : pch->m_child_nodes) {
++        for (auto bg : rank->m_child_nodes) {
++          for (auto bank: bg->m_child_nodes) {
++            if (bank->m_node_id == node->m_node_id) {
++              switch (bank->m_state) {
++                case T::m_states["Closed"]: return T::m_commands["ACTSB"];
++                case T::m_states["Opened"]: {
++                  if (bank->m_row_state.find(target_id) != bank->m_row_state.end()) {
++                    continue;
++                  } else {
++                    return T::m_commands["PRESB"];
++                  }
++                  return cmd;
++                }
++                default: {
++                  spdlog::error("[Preq::Bank] Invalid bank state for an RD/WR command!");
++                  std::exit(-1);
++                }
++              }
++            }
++          }
++        }
++      }
++    }
++  }
++  return cmd;
++};
++
++template <class T>
++int RequirePIMPerBanksRowOpen(typename T::Node* node, int cmd, int target_id, Clk_t clk) {
++  // For HBM3
++  if constexpr (T::m_levels["bank"] - T::m_levels["channel"] == 4) {
++    typename T::Node* ch = node->m_parent_node->m_parent_node->m_parent_node->m_parent_node;
++    for (auto pch : ch->m_child_nodes) {
++      for (auto rank : pch->m_child_nodes) {
++        if (rank->m_node_id == node->m_parent_node->m_parent_node->m_node_id) {
++          for (auto bg : rank->m_child_nodes) {
++            if (bg->m_node_id == node->m_parent_node->m_node_id) {
++              for (auto bank : bg->m_child_nodes) {
++                if (bank->m_node_id == node->m_node_id) {
++                  switch (bank->m_state) {
++                    case T::m_states["Closed"]: return T::m_commands["ACTPB"];
++                    case T::m_states["Opened"]: {
++                      if (bank->m_row_state.find(target_id) != bank->m_row_state.end()) {
++                        continue;
++                      } else {
++                        return T::m_commands["PREPB"];
++                      }
++                      return cmd;
++                    }
++                    default: {
++                      spdlog::error("[Preq::Bank] Invalid bank state for an RD/WR command!");
++                      std::exit(-1);
++                    }
++                  }
++                }
++              }
++            }
++          }
++        }
++      }
++    }
++  }
++  return cmd;
++};
++
++
+@@ -83,0 +190 @@ int RequireSameBanksClosed(typename T::Node* node, int cmd, int target_id, Clk_t
++
+@@ -108,0 +216,14 @@ namespace Channel {
++  } else if constexpr (T::m_levels["bank"] - T::m_levels["channel"] == 4) {
++    for (auto pc : node->m_child_nodes) {
++      for (auto rank : pc->m_child_nodes) {
++        for (auto bg : rank->m_child_nodes) {
++          for (auto bank: bg->m_child_nodes) {
++            if (bank->m_state == T::m_states["Closed"]) {
++              continue;
++            } else {
++              return T::m_commands["PREA"];
++            }
++          }
++        }
++      }
++    }
+@@ -112,0 +234 @@ namespace Channel {
++

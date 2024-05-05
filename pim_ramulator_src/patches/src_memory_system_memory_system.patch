@@ -1,0 +1,8 @@
+diff --git a/src/memory_system/memory_system.h b/src/memory_system/memory_system.h
+index 10b06e0..722f1b3 100644
+--- a/src/memory_system/memory_system.h
++++ b/src/memory_system/memory_system.h
+@@ -73,0 +74,3 @@ class IMemorySystem : public TopLevel<IMemorySystem> {
++
++    // jhpar: Add
++    virtual bool is_pending() = 0;

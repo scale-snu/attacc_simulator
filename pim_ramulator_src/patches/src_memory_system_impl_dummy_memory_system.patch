@@ -1,0 +1,7 @@
+diff --git a/src/memory_system/impl/dummy_memory_system.cpp b/src/memory_system/impl/dummy_memory_system.cpp
+index ce7750e..3706ecf 100644
+--- a/src/memory_system/impl/dummy_memory_system.cpp
++++ b/src/memory_system/impl/dummy_memory_system.cpp
+@@ -20,0 +21,2 @@ class DummyMemorySystem final : public IMemorySystem, public Implementation {
++
++    bool is_pending() override {};

@@ -1,0 +1,10 @@
+diff --git a/src/dram_controller/controller.h b/src/dram_controller/controller.h
+index f6e252b..ba6d664 100644
+--- a/src/dram_controller/controller.h
++++ b/src/dram_controller/controller.h
+@@ -49,0 +50,5 @@ class IDRAMController : public Clocked<IDRAMController> {
++    virtual bool is_pending() = 0;
++
++    // For debugging
++    Clk_t get_clk() {return m_clk;}
++

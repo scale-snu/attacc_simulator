@@ -1,0 +1,21 @@
+diff --git a/src/base/request.h b/src/base/request.h
+index 2c9d406..741b3c9 100644
+--- a/src/base/request.h
++++ b/src/base/request.h
+@@ -19,0 +20 @@ struct Request {
++      // DRAM requests
+@@ -21 +22,13 @@ struct Request {
+-      Write,
++      Write = 1,
++
++      // PIM requests
++      PIM_MAC_AB = 4,
++      PIM_MAC_SB = 5,
++      PIM_MAC_PB = 6,
++      PIM_WR_GB = 7,
++      PIM_MV_SB = 8,
++      PIM_MV_GB = 9,
++      PIM_SFM = 10,
++      PIM_SET_MODEL = 11,
++      PIM_SET_HEAD = 12,
++      PIM_BARRIER = 13

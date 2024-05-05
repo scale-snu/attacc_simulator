@@ -1,0 +1,38 @@
+diff --git a/src/dram_controller/impl/scheduler/generic_scheduler.cpp b/src/dram_controller/impl/scheduler/generic_scheduler.cpp
+index 2d0b389..2b779b7 100644
+--- a/src/dram_controller/impl/scheduler/generic_scheduler.cpp
++++ b/src/dram_controller/impl/scheduler/generic_scheduler.cpp
+@@ -20,0 +21,11 @@ class FRFCFS : public IScheduler, public Implementation {
++    std::vector<AddrVec_t> rowhit_list;
++ 
++    AddrVec_t get_bank_addr_vec (Request req) {
++      AddrVec_t bank_addr_vec;
++      for (auto itr = req.addr_vec.begin(); itr != (req.addr_vec.begin() + m_dram->m_levels("row")); itr++) {
++        bank_addr_vec.push_back(*itr);
++      }
++      return bank_addr_vec;
++    };
++
++
+@@ -28 +39,7 @@ class FRFCFS : public IScheduler, public Implementation {
+-        } else {
++        }
++        else {
++          if (!m_dram->check_rowbuffer_hit(req2->command, req2->addr_vec)) {
++            if (std::find(rowhit_list.begin(), rowhit_list.end(), get_bank_addr_vec(*req2)) != rowhit_list.end()) {
++              return req1;
++            }
++          }
+@@ -40,0 +58 @@ class FRFCFS : public IScheduler, public Implementation {
++
+@@ -49,0 +68,8 @@ class FRFCFS : public IScheduler, public Implementation {
++      // Store row buffer hit history
++      rowhit_list.clear();
++      for (auto& req : buffer) {
++        if (m_dram->check_rowbuffer_hit(req.command, req.addr_vec)) {
++          rowhit_list.push_back(get_bank_addr_vec(req));
++        }
++      }
++
+@@ -50,0 +77 @@ class FRFCFS : public IScheduler, public Implementation {
++

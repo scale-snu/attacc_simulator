@@ -1,0 +1,14 @@
+diff --git a/src/frontend/CMakeLists.txt b/src/frontend/CMakeLists.txt
+index 70ea393..c202083 100644
+--- a/src/frontend/CMakeLists.txt
++++ b/src/frontend/CMakeLists.txt
+@@ -8,8 +8 @@ target_sources(
+-  impl/memory_trace/readwrite_trace.cpp
+-
+-  impl/processor/simpleO3/simpleO3.cpp
+-  impl/processor/simpleO3/core.h      impl/processor/simpleO3/core.cpp
+-  impl/processor/simpleO3/llc.h       impl/processor/simpleO3/llc.cpp
+-  impl/processor/simpleO3/trace.h     impl/processor/simpleO3/trace.cpp
+-
+-  impl/external_wrapper/gem5_frontend.cpp
++  impl/memory_trace/pim_loadstore_trace.cpp
