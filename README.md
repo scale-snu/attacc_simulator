@@ -1,9 +1,9 @@
 # Simulator for AttAcc
 This repository includes Python-based simulator designed to analyze the transformer-based generation model (TbGM) inference in a heterogeneous system consisting of an xPU and an Attention Accelerator (AttAcc). 
 AttAcc is an accelerator for the attention layer of TbGM, which consists of an HBM-based processing-in-memory (PIM) structure.
-In simulating an xPU and AttAcc system, the simulator outputs the performance and energy usage of the xPU, while the behavior of AttAcc is simulated using a properly modified [Ramulator 2.0](https://github.com/CMU-SAFARI/ramulator2)
+In simulating an xPU and AttAcc system, the simulator outputs the performance and energy usage of the xPU, while the behavior of AttAcc is simulated using a properly modified [Ramulator 2.0](https://github.com/CMU-SAFARI/ramulator2).
 We set the memory device of AttAcc in Ramulator2 to HBM3 and implemented AttAcc\_bank, AttAcc\_BG, and AttAcc\_buffer, which represent AttAcc deploying processing units per bank, per bank group, or per pseudo-channel (on the buffer die), respectively.
-For more details of AttAcc, please check the paper **AttAcc! Unleashing the Power of PIM for Batched Transformer-based Generative Model Inference** submitted to ASPLOS 2024.
+For more details of AttAcc, please check the [paper](https://dl.acm.org/doi/10.1145/3620665.3640422) **AttAcc! Unleashing the Power of PIM for Batched Transformer-based Generative Model Inference** published at [ASPLOS 2024](https://www.asplos-conference.org/asplos2024).
 
  
 ## Prerequisites
