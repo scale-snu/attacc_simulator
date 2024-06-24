@@ -336,12 +336,12 @@ def run_attention(dhead, n_head_per_hbm, L, trace_file_name):
         total_cmd += barrier
 
     # SoftMax
-      ## SFM (Head0)
-      total_cmd += cmd_sfm[i]
-      ## MVGB (Head0)
-      total_cmd += cmd_context_mvgb[i]
-      ## BARRIER
-      total_cmd += barrier
+    ## SFM (Head0)
+    total_cmd += cmd_sfm[i]
+    ## MVGB (Head0)
+    total_cmd += cmd_context_mvgb[i]
+    ## BARRIER
+    total_cmd += barrier
 
     # Context
     length = math.ceil(dhead/n_bank/n_mac)
